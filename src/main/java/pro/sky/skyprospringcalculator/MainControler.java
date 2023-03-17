@@ -8,13 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping ("/calculator")
 
-public class mainControler {
-    public int num1;
-    public int num2;
+public class MainControler {
     private final Calculator calculator;
+    private int num1;
+    private int num2;
 
-    public mainControler(Calculator calculator) {
+
+    public MainControler(Calculator calculator) {
         this.calculator = calculator;
+
     }
     @GetMapping
     public String hello(){
@@ -22,21 +24,21 @@ public class mainControler {
     }
 
     @GetMapping( "/plus")
-    public String getSum (@RequestParam () int num1, int num2) {
+    public String getSum (@RequestParam ("num1") int num1, @RequestParam ("num2")  int num2) {
         return num1 + " + " + num2 + " = " + Calculator.plus(num1, num2);
     }
     @GetMapping("/minus")
-    public String getMinus (@RequestParam () int num1, int num2) {
+    public String getMinus (@RequestParam ("num1") int num1, @RequestParam ("num2")  int num2) {
         return num1 + " - " + num2 + " = " + Calculator.minus(num1, num2);
     }
     @GetMapping("/multiply")
-    public String getMultiply (@RequestParam () int num1, int num2) {
+    public String getMultiply (@RequestParam ("num1") int num1, @RequestParam ("num2")  int num2) {
         return num1 + " * " + num2 + " = " + Calculator.multiply(num1, num2);
     }
 
     @GetMapping("/divide")
 
-    public String getDivide (@RequestParam () int num1, int num2) {
+    public String getDivide (@RequestParam ("num1") int num1, @RequestParam ("num2")  int num2) {
         return num1 + " / " + num2 + " = " + Calculator.divide(num1, num2);
     }
 }
